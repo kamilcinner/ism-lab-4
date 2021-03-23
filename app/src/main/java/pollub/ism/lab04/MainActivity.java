@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkWin() {
-        if (this.isAnyFieldEmpty()) {
-            return;
-        }
-
         String player = this.checkRows();
         if (!player.equals("")) {
             // Player wins
@@ -56,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         if (!player.equals("")) {
             // Player wins
 
+            return;
+        }
+
+        if (this.isAnyFieldEmpty()) {
+            // Tie
             return;
         }
     }
@@ -73,14 +74,16 @@ public class MainActivity extends AppCompatActivity {
         String player = "";
         for (int i = 0; i < 3; i++) {
             player = this.getBoardFieldValue(i, 0);
-            for (int j = 1; j < 3; j++) {
-                if (!player.equals(this.getBoardFieldValue(i, j))) {
-                    player = "";
+            if (!player.equals("")) {
+                for (int j = 1; j < 3; j++) {
+                    if (!player.equals(this.getBoardFieldValue(i, j))) {
+                        player = "";
+                        break;
+                    }
+                }
+                if (!player.equals("")) {
                     break;
                 }
-            }
-            if (!player.equals("")) {
-                break;
             }
         }
         return player;
@@ -90,17 +93,24 @@ public class MainActivity extends AppCompatActivity {
         String player = "";
         for (int i = 0; i < 3; i++) {
             player = this.getBoardFieldValue(0, i);
-            for (int j = 1; j < 3; j++) {
-                if (!player.equals(this.getBoardFieldValue(j, i))) {
-                    player = "";
+            if (!player.equals("")) {
+                for (int j = 1; j < 3; j++) {
+                    if (!player.equals(this.getBoardFieldValue(j, i))) {
+                        player = "";
+                        break;
+                    }
+                }
+                if (!player.equals("")) {
                     break;
                 }
             }
-            if (!player.equals("")) {
-                break;
-            }
         }
         return player;
+    }
+
+    private String checkDiagonals() {
+        String player = this.getBoardFieldValue(0, 0);
+
     }
 
     private String getBoardFieldValue(int row, int col) {
