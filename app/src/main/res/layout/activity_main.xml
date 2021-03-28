@@ -26,6 +26,7 @@
                 android:id="@+id/b00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
 
@@ -33,6 +34,8 @@
                 android:id="@+id/b01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
 
@@ -40,6 +43,7 @@
                 android:id="@+id/b02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
         </TableRow>
@@ -52,6 +56,7 @@
                 android:id="@+id/b10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
 
@@ -59,6 +64,8 @@
                 android:id="@+id/b11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
 
@@ -66,6 +73,7 @@
                 android:id="@+id/b12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
         </TableRow>
@@ -78,6 +86,7 @@
                 android:id="@+id/b20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
 
@@ -85,6 +94,8 @@
                 android:id="@+id/b21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
 
@@ -92,6 +103,7 @@
                 android:id="@+id/b22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:minHeight="88dip"
                 android:onClick="onPlayerMove" />
         </TableRow>
