@@ -1,5 +1,6 @@
 package pollub.ism.lab04;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private String currentMove;
-    private final String[] board = new String[9];
+    private String[] board = new String[9];
     private boolean gameEnd = false;
 
     @Override
@@ -19,6 +20,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.initializeBoard();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray(KeyEnum.KEY_BOARD.toString(), this.board);
+        outState.putBoolean(KeyEnum.KEY_GAME_END.toString(), this.gameEnd);
+        outState.putString(KeyEnum.KEY_CURRENT_MOVE.toString(), this.currentMove);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        this.board = savedInstanceState.getStringArray(KeyEnum.KEY_BOARD.toString());
+        this.gameEnd = savedInstanceState.getBoolean(KeyEnum.KEY_GAME_END.toString());
+        this.currentMove = savedInstanceState.getString(KeyEnum.KEY_CURRENT_MOVE.toString());
+
+        this.restoreBoardState();
     }
 
     public void onPlayerMove(View view) {
@@ -69,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void restoreBoardState() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.setFieldState(i, j, this.getBoardFieldValue(i, j));
+            }
+        }
+    }
+
     private void showWinToast() {
         Toast.makeText(this, this.getWinText(), Toast.LENGTH_LONG).show();
     }
@@ -81,12 +109,16 @@ public class MainActivity extends AppCompatActivity {
         this.initializeBoard();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                String textId = "b" + ((Integer) i).toString() + ((Integer) j).toString();
-                int id = getResources().getIdentifier(textId, "id", getPackageName());
-                ((Button) findViewById(id)).setText("");
+                this.setFieldState(i, j, "");
             }
         }
         this.gameEnd = false;
+    }
+
+    private void setFieldState(int row, int col, String text) {
+        String textId = "b" + ((Integer) row).toString() + ((Integer) col).toString();
+        int id = getResources().getIdentifier(textId, "id", getPackageName());
+        ((Button) findViewById(id)).setText(text);
     }
 
     private void changePlayer() {
